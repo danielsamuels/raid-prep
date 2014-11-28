@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="prepApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Preparing for raids</title>
+    <link rel="stylesheet" href="/static/css/normalize.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body ng-controller="MainCtrl">
+    <div class="section top">
+        <div class="row">
+            <div class="small-4 columns">
+                <h1>Role</h1>
+                <label><input type="radio" name="role" value="Tank" ng-model="role"> Tank<br></label>
+                <label><input type="radio" name="role" value="Healer" ng-model="role"> Healer<br></label>
+                <label><input type="radio" name="role" value="DPS" ng-model="role"> DPS</label>
+            </div>
+
+            <div class="small-4 columns">
+                <h1>Primary stat</h1>
+                <label ng-show="role !== 'Tank'">
+                    <input type="radio" value="Intellect" ng-model="primary"> Intellect<br>
+                </label>
+
+                <label ng-show="role !== 'Healer'">
+                    <input type="radio" value="Agility" ng-model="primary"> Agility<br>
+                </label>
+
+                <label ng-show="role !== 'Healer'">
+                    <input type="radio" value="Strength" ng-model="primary"> Strength<br>
+                </label>
+            </div>
+
+            <div class="small-4 columns">
+                <h1>Secondary stat</h1>
+                <label ng-repeat="stat in secondaries">
+                    <input type="radio" name="secondary" ng-value="stat" ng-model="$parent.secondary"> {{ stat }} <br>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="section bottom">
+        <div class="row">
+            <div class="small-12 columns">
+                <h1>Here's what you need..</h1>
+            </div>
+
+            <div class="small-4 columns">
+                <h1>Flasks</h1>
+                <ul>
+                    <li ng-show="role === 'Tank'">
+                    <a href="http://www.wowhead.com/item=109160" target="_blank">Greater Draenic Stamina Flask</a><br>(creates 5 at a time)
+
+                        <ul>
+                            <li>5x <a href="http://www.wowhead.com/item=108996" target="_blank">Alchemical Catalyst</a></li>
+                            <li>1x <a href="http://www.wowhead.com/item=113262" target="_blank">Sorcerous Water</a></li>
+                            <li>
+                                5x <a href="http://www.wowhead.com/item=109152" target="_blank">Draenic Stamina Flask</a>
+
+                                <ul>
+                                    <li>20x <a href="http://www.wowhead.com/item=109129" target="_blank">Talador Orchid</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li ng-show="primary === 'Intellect'">
+                        <a href="http://www.wowhead.com/item=109155" target="_blank">Greater Draenic Intellect Flask</a><br>(creates 5 at a time)
+
+                        <ul>
+                            <li>5x <a href="http://www.wowhead.com/item=108996" target="_blank">Alchemical Catalyst</a></li>
+                            <li>1x <a href="http://www.wowhead.com/item=113261" target="_blank">Sorcerous Fire</a></li>
+                            <li>
+                                5x <a href="http://www.wowhead.com/item=109147" target="_blank">Draenic Intellect Flask</a>
+
+                                <ul>
+                                    <li>20x <a href="http://www.wowhead.com/item=109127" target="_blank">Starflower</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li ng-show="primary === 'Agility'">
+                        <a href="http://www.wowhead.com/item=109153" target="_blank">Greater Draenic Agility Flask</a><br>(creates 5 at a time)
+
+                        <ul>
+                            <li>5x <a href="http://www.wowhead.com/item=108996" target="_blank">Alchemical Catalyst</a></li>
+                            <li>1x <a href="http://www.wowhead.com/item=113262" target="_blank">Sorcerous Water</a></li>
+                            <li>
+                                5x <a href="http://www.wowhead.com/item=109145" target="_blank">Draenic Agility Flask</a>
+
+                                <ul>
+                                    <li>20x <a href="http://www.wowhead.com/item=109125" target="_blank">Fireweed</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li ng-show="primary === 'Strength'">
+                        <a href="http://www.wowhead.com/item=109156" target="_blank">Greater Draenic Strength Flask</a><br>(creates 5 at a time)
+
+                        <ul>
+                            <li>5x <a href="http://www.wowhead.com/item=108996" target="_blank">Alchemical Catalyst</a></li>
+                            <li>1x <a href="http://www.wowhead.com/item=113261" target="_blank">Sorcerous Fire</a></li>
+                            <li>
+                                5x <a href="http://www.wowhead.com/item=109148" target="_blank">Draenic Strength Flask</a>
+
+                                <ul>
+                                    <li>20x <a href="http://www.wowhead.com/item=109128" target="_blank">Nagrand Arrowbloom</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="small-4 columns">
+                <h1>Potions</h1>
+                <ul>
+                    <li>
+                        <a href="http://www.wowhead.com/item=109223" target="_blank">Healing Tonic</a><br>(creates 4+ at a time)
+
+                        <ul>
+                        <li>10x <a href="http://www.wowhead.com/item=109142" target="_blank">Sea Scorpion Segment</a></li>
+                        </ul>
+                    </li>
+
+                    <li ng-show="role === 'Tank'">
+                        Armor
+
+                        <ul>
+                            <li>
+                                1x <a href="http://www.wowhead.com/item=109123" target="_blank">Crescent Oil</a>
+
+                                <ul>
+                                    <li>3x <a href="http://www.wowhead.com/item=109137" target="_blank">Crescent Saberfish Flesh</a></li>
+                                </ul>
+
+                            </li>
+                            <li>3x <a href="http://www.wowhead.com/item=109119" target="_blank">True Iron Ore</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a ng-href="http://www.wowhead.com/item={{ potions[primary].id }}">Draenic {{ primary }} Potion</a>
+
+                        <ul>
+                            <li>
+                                1x <a href="http://www.wowhead.com/item=109123" target="_blank">Crescent Oil</a>
+
+                                <ul>
+                                    <li>3x <a href="http://www.wowhead.com/item=109137" target="_blank">Crescent Saberfish Flesh</a></li>
+                                </ul>
+
+                            </li>
+                            <li ng-bind-html="potions[primary].extra"></li>
+                        </ul>
+                    </li>
+
+                    <li ng-show="role === 'Healer'">
+                        <a href="http://www.wowhead.com/item=109222" target="_blank">Draenic Mana Potion</a>
+
+                        <ul>
+                            <li>
+                                1x <a href="http://www.wowhead.com/item=109123" target="_blank">Crescent Oil</a>
+
+                                <ul>
+                                <li>3x <a href="http://www.wowhead.com/item=109137" target="_blank">Crescent Saberfish Flesh</a></li>
+                                </ul>
+
+                            </li>
+                            <li>3x <a href="http://www.wowhead.com/item=109144" target="_blank">Blackwater Whiptail Flesh</a></li>
+                        </ul>
+                    </li>
+
+                    <li ng-show="role === 'Healer'">
+                        <a href="http://www.wowhead.com/item=109221" target="_blank">Draenic Channeled Mana Potion</a>
+
+                        <ul>
+                            <li>
+                                1x <a href="http://www.wowhead.com/item=109123" target="_blank">Crescent Oil</a>
+
+                                <ul>
+                                    <li>3x <a href="http://www.wowhead.com/item=109137" target="_blank">Crescent Saberfish Flesh</a></li>
+                                </ul>
+
+                            </li>
+                            <li>1x <a href="http://www.wowhead.com/item=109131" target="_blank">Raw Clefthoof Meat</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="small-4 columns">
+            <h1>Food</h1>
+                <ul>
+                    <li>
+                        <a ng-href="http://www.wowhead.com/item={{ food[secondary].id }}" target="_blank">{{ food[secondary].name }}</a>
+
+                        <ul>
+                            <li ng-repeat="ingredient in food[secondary].ingredients" ng-bind-html="ingredient"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular-sanitize.min.js"></script>
+    <script>
+    var prepApp = angular.module('prepApp', ['ngSanitize']);
+
+    prepApp.controller('MainCtrl', ['$scope', function($scope) {
+        $scope.secondaries = ['Critical Strike', 'Multistrike', 'Haste', 'Versatility', 'Mastery', 'Stamina']
+
+        // Defaults
+        $scope.role = 'Healer';
+        $scope.primary = 'Intellect';
+        $scope.secondary = 'Critical Strike';
+
+        $scope.food = {
+            'Critical Strike': {
+                'id': 111449,
+                'name': 'Blackrock Barbecue',
+                'ingredients': [
+                '25x <a href="http://www.wowhead.com/item=109136" target="_blank">Raw Boar Meat</a>',
+                    '50x <a href="http://www.wowhead.com/item=109143" target="_blank">Abyssal Gulper Eel Flesh</a>',
+                    '1x <a href="http://www.wowhead.com/item=109125" target="_blank">Fireweed</a>'
+                ]
+            },
+            'Multistrike': {
+                'id': 111453,
+                'name': 'Calamari Crepes',
+                'ingredients': [
+                    '25x <a href="http://www.wowhead.com/item=109133" target="_blank">Rylak Egg</a>',
+                    '50x <a href="http://www.wowhead.com/item=109141" target="_blank">Fire Ammonite Tentacle</a>',
+                    '1x <a href="http://www.wowhead.com/item=109128" target="_blank">Nagrand Arrowbloom</a>'
+                ]
+            },
+            'Haste': {
+                'id': 111450,
+                'name': 'Frosty Stew',
+                'ingredients': [
+                    '25x <a href="http://www.wowhead.com/item=109132" target="_blank">Raw Talbuk Meat</a>',
+                    '50x <a href="http://www.wowhead.com/item=109140" target="_blank">Blind Lake Sturgeon Flesh</a>',
+                    '1x <a href="http://www.wowhead.com/item=109124" target="_blank">Frostweed</a>'
+                ]
+            },
+            'Versatility': {
+                'id': 111454,
+                'name': 'Gorgrond Chowder',
+                'ingredients': [
+                '25x <a href="http://www.wowhead.com/item=109131" target="_blank">Raw Clefthoof Meat</a>',
+                '50x <a href="http://www.wowhead.com/item=109138" target="_blank">Jawless Skulker Flesh</a>',
+                '1x <a href="http://www.wowhead.com/item=109126" target="_blank">Gorgrond Flytrap</a>'
+                ]
+            },
+            'Mastery': {
+                'id': 111452,
+                'name': 'Sleeper Surprise',
+                'ingredients': [
+                    '25x <a href="http://www.wowhead.com/item=109135" target="_blank">Raw Riverbeast Meat</a>',
+                    '50x <a href="http://www.wowhead.com/item=109139" target="_blank">Fat Sleeper Flesh</a>',
+                    '1x <a href="http://www.wowhead.com/item=109127" target="_blank">Starflower</a>'
+                ]
+            },
+            'Stamina': {
+                'id': 111447,
+                'name': 'Talador Surf and Turf',
+                'ingredients': [
+                '25x <a href="http://www.wowhead.com/item=109134" target="_blank">Raw Elekk Meat</a>',
+                '50x <a href="http://www.wowhead.com/item=109142" target="_blank">Sea Scorpion Segment</a>',
+                '1x <a href="http://www.wowhead.com/item=109129" target="_blank">Talador Orchid</a>'
+                ]
+            },
+        };
+
+        $scope.potions = {
+            'Intellect': {
+                'id': 109218,
+                'extra': '3x <a href="http://www.wowhead.com/item=109143" target="_blank">Abyssal Gulper Eel Flesh</a>'
+            },
+            'Strength': {
+                'id': 109219,
+                'extra': '1x <a href="http://www.wowhead.com/item=109136" target="_blank">Raw Boar Meat</a>'
+            },
+            'Agility': {
+                'id': 109217,
+                'extra': '1x <a href="http://www.wowhead.com/item=109132" target="_blank">Raw Talbuk Meat</a>'
+            }
+        }
+
+        $scope.$watch('role', function(value) {
+            if (value === 'Healer') {
+                $scope.primary = 'Intellect';
+            } else if (value === 'Tank' && $scope.primary === 'Intellect') {
+                $scope.primary = 'Agility';
+            }
+        });
+    }]);
+    </script>
+</body>
+</html>
