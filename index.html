@@ -5,19 +5,28 @@
     <title>Preparing for raids</title>
     <link rel="stylesheet" href="/static/css/normalize.css">
     <link rel="stylesheet" href="/static/css/style.css">
+
+    <script type="text/javascript" src="http://static.wowhead.com/widgets/power.js"></script>
+    <script>
+    var wowhead_tooltips = {
+        "colorlinks": false,
+        "iconizelinks": true,
+        "renamelinks": true
+    }
+    </script>
 </head>
 <body ng-controller="MainCtrl">
     <div class="section top">
         <div class="row">
             <div class="small-4 columns">
-                <h1>Role</h1>
+                <h2>Role</h2>
                 <label><input type="radio" name="role" value="Tank" ng-model="role"> Tank<br></label>
                 <label><input type="radio" name="role" value="Healer" ng-model="role"> Healer<br></label>
                 <label><input type="radio" name="role" value="DPS" ng-model="role"> DPS</label>
             </div>
 
             <div class="small-4 columns">
-                <h1>Primary stat</h1>
+                <h2>Primary stat</h2>
                 <label ng-show="role !== 'Tank'">
                     <input type="radio" value="Intellect" ng-model="primary"> Intellect<br>
                 </label>
@@ -32,7 +41,7 @@
             </div>
 
             <div class="small-4 columns">
-                <h1>Secondary stat</h1>
+                <h2>Secondary stat</h2>
                 <label ng-repeat="stat in secondaries">
                     <input type="radio" name="secondary" ng-value="stat" ng-model="$parent.secondary"> {{ stat }} <br>
                 </label>
@@ -41,12 +50,8 @@
     </div>
     <div class="section bottom">
         <div class="row">
-            <div class="small-12 columns">
-                <h1>Here's what you need..</h1>
-            </div>
-
             <div class="small-4 columns">
-                <h1>Flasks</h1>
+                <h2>Flasks</h2>
                 <ul>
                     <li ng-show="role === 'Tank'">
                     <a href="http://www.wowhead.com/item=109160" target="_blank">Greater Draenic Stamina Flask</a><br>(creates 5 at a time)
@@ -115,7 +120,7 @@
             </div>
 
             <div class="small-4 columns">
-                <h1>Potions</h1>
+                <h2>Potions</h2>
                 <ul>
                     <li>
                         <a href="http://www.wowhead.com/item=109223" target="_blank">Healing Tonic</a><br>(creates 4+ at a time)
@@ -192,7 +197,7 @@
             </div>
 
             <div class="small-4 columns">
-            <h1>Food</h1>
+            <h2>Food</h2>
                 <ul>
                     <li>
                         <a ng-href="http://www.wowhead.com/item={{ food[secondary].id }}" target="_blank">{{ food[secondary].name }}</a>
@@ -297,6 +302,12 @@
                 $scope.primary = 'Agility';
             }
         });
+
+        $scope.$watchGroup(['role', 'primary', 'secondary'], function() {
+            if (typeof $WowheadPower !== "undefined") {
+                $WowheadPower.refreshLinks();
+            }
+        })
     }]);
     </script>
 </body>

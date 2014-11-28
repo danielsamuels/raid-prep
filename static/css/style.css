@@ -91,31 +91,61 @@
 }
 
 /* line 9, ../scss/style.scss */
+body {
+  background-color: #222;
+  color: #fff;
+  font-size: 14px;
+}
+
+/* line 15, ../scss/style.scss */
 .section {
   padding-top: 40px;
   padding-bottom: 40px;
 }
-/* line 13, ../scss/style.scss */
+/* line 19, ../scss/style.scss */
 .section.top {
   border-bottom: 1px solid #f1f1f1;
 }
 
-/* line 18, ../scss/style.scss */
+/* line 24, ../scss/style.scss */
 h1 {
   margin-top: 0;
+  font-weight: 400;
 }
 
-/* line 22, ../scss/style.scss */
+/* line 29, ../scss/style.scss */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* line 34, ../scss/style.scss */
+input {
+  margin-right: 3px;
+}
+
+/* line 38, ../scss/style.scss */
 div > ul > li + li {
   margin-top: 12px;
 }
 
-/* line 26, ../scss/style.scss */
+/* line 42, ../scss/style.scss */
+div > ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* line 47, ../scss/style.scss */
 label {
   display: block;
 }
 
-/* line 30, ../scss/style.scss */
+/* line 51, ../scss/style.scss */
 label + label {
   margin-top: 6px;
+}
+
+/* line 55, ../scss/style.scss */
+li {
+  line-height: 1.6;
 }
