@@ -215,13 +215,21 @@
     <script>
     var prepApp = angular.module('prepApp', ['ngSanitize']);
 
-    prepApp.controller('MainCtrl', ['$scope', function($scope) {
+    prepApp.controller('MainCtrl', ['$scope', '$location', function($scope, $location) {
         $scope.secondaries = ['Critical Strike', 'Multistrike', 'Haste', 'Versatility', 'Mastery', 'Stamina']
 
         // Defaults
-        $scope.role = 'Healer';
-        $scope.primary = 'Intellect';
-        $scope.secondary = 'Critical Strike';
+        if ($location.hash()) {
+            hash_split = $location.hash().split(',')
+
+            $scope.role = hash_split[0];
+            $scope.primary = hash_split[1];
+            $scope.secondary = hash_split[2];
+        } else {
+            $scope.role = 'Healer';
+            $scope.primary = 'Intellect';
+            $scope.secondary = 'Critical Strike';
+        }
 
         $scope.food = {
             'Critical Strike': {
@@ -303,10 +311,12 @@
             }
         });
 
-        $scope.$watchGroup(['role', 'primary', 'secondary'], function() {
+        $scope.$watchGroup(['role', 'primary', 'secondary'], function(data) {
             if (typeof $WowheadPower !== "undefined") {
                 $WowheadPower.refreshLinks();
             }
+
+            $location.hash(data.join(','));
         })
     }]);
     </script>
